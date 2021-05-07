@@ -1,5 +1,5 @@
 export const getSelectedState = (labels) => {
-  return labels.reduce((o, key) => ({ ...o, [key]: true }), {})
+  return labels ? labels.reduce((o, key) => ({ ...o, [key]: true }), {}) : {}
 }
 
 export const getZoomStartPercentage = (dates) => {
@@ -15,8 +15,10 @@ export const getLegendIcon = (selected) => {
 }
 
 export const getLegendLabels = (labels, selected) => {
-  return labels.map((label) => ({
-    name: label,
-    icon: getLegendIcon(selected[label]),
-  }))
+  return labels
+    ? labels.map((label) => ({
+        name: label,
+        icon: getLegendIcon(selected?.[label] ?? true),
+      }))
+    : []
 }
